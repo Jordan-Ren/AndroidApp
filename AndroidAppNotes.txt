@@ -1,0 +1,7 @@
+/**Ideas:
+1) Every ... 20 pixels along the created path add a square cobblestone image 20 pixels in length --- This will create the path that the mobs will walk on.
+2) Mobs follow path, update their position by 10 places along the path per timestep.
+3) Get the mob movement working before placing the towers.
+4) Tower ideas: Image as button, if you click the button, a opaque circle that shows tower radius is shown, tap again to place the tower.
+5) Add collision detection with basic rectangles.
+6) Add throwing mechanics using object based programming.**/
