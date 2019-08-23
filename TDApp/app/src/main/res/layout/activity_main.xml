@@ -9,7 +9,20 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxWidth="42dp"
+        android:adjustViewBounds="true"
+        android:maxHeight="42dp"
+        android:scaleType="fitCenter"
         android:src="@drawable/dog"
-        android:id="@+id/puppy"/>
+        android:id="@+id/dog"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="10dp"
+        android:adjustViewBounds="true"
+        android:maxHeight="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/path"
+        android:id="@+id/path" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
