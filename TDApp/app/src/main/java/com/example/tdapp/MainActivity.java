@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     int path[][];
     int pathCorners[][];
     int total;
+    int pathLength;
 
     // Initialize Class
     private Handler handler = new Handler();
@@ -49,16 +51,25 @@ public class MainActivity extends AppCompatActivity {
         int maxY = mdispSize.y;
 
         // Path Creation
-        pathCorners = new int[2][2];
+        pathCorners = new int[3][3];
         pathCorners[0][0] = maxX/2 - dog.icon.getWidth();
         pathCorners[0][1] = maxY;
         pathCorners[1][0] = maxX/2 - dog.icon.getWidth();
         pathCorners[1][1] = 0;
-        //pathCorners[2][0] = maxX/2 - dog.icon.getWidth();
-        //pathCorners[2][1] = -100;
-        path = new int[maxY][2];
+        pathCorners[2][0] = maxX/2 - dog.icon.getWidth() - 100;
+        pathCorners[2][1] = 0;
+        //Finds the length of the path
+        for (int i = 0; i < pathCorners.length - 1; i++) {
+            if (pathCorners[i][0] == pathCorners[i+1][0]) {
+                pathLength += Math.abs(pathCorners[i][1] - pathCorners[i+1][1]);
+            }
+            else {
+                pathLength += Math.abs(pathCorners[i][0] - pathCorners[i+1][0]);
+            }
+        }
+        path = new int[pathLength][2];
         total = 0;
-        for (int i = 0; i< (pathCorners.length -1); i++) {
+        for (int i = 0; i< (pathCorners.length - 1); i++) {
             //This is checking if x stays the same
             if (pathCorners[i][0] == pathCorners[i+1][0]) {
                 //If the path moves down
