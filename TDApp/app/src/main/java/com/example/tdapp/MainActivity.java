@@ -50,14 +50,16 @@ public class MainActivity extends AppCompatActivity {
         int maxX = mdispSize.x;
         int maxY = mdispSize.y;
 
-        // Path Creation
-        pathCorners = new int[3][3];
+        //Creates corners of the path - create map here
+        pathCorners = new int[4][4];
         pathCorners[0][0] = maxX/2 - dog.icon.getWidth();
         pathCorners[0][1] = maxY;
         pathCorners[1][0] = maxX/2 - dog.icon.getWidth();
         pathCorners[1][1] = 0;
-        pathCorners[2][0] = maxX/2 - dog.icon.getWidth() - 100;
+        pathCorners[2][0] = maxX/2 - dog.icon.getWidth() - 500;
         pathCorners[2][1] = 0;
+        pathCorners[3][0] = maxX/2 - dog.icon.getWidth() - 500;
+        pathCorners[3][1] = maxY;
         //Finds the length of the path
         for (int i = 0; i < pathCorners.length - 1; i++) {
             if (pathCorners[i][0] == pathCorners[i+1][0]) {
@@ -67,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 pathLength += Math.abs(pathCorners[i][0] - pathCorners[i+1][0]);
             }
         }
+        //Creates the path itself, with each array within the larger array being a coordinate
         path = new int[pathLength][2];
         total = 0;
         for (int i = 0; i< (pathCorners.length - 1); i++) {
@@ -109,7 +112,12 @@ public class MainActivity extends AppCompatActivity {
         path[maxY - 1][0] = pathCorners[1][0];
         path[maxY - 1][1] = pathCorners[1][1];
 
-        // Draw path
+        //Add a tower to test with
+        final Tower testTower = new Tower((ImageView)findViewById(R.id.tower));
+        testTower.X = maxX/2 - 100;
+        testTower.Y = maxY/2 - 100;
+        testTower.icon.setX(testTower.X);
+        testTower.icon.setY(testTower.Y);
 
         // Start Timer
         timer.schedule(new TimerTask() {
@@ -142,4 +150,20 @@ class Mob {
     ImageView icon;
     public Mob (ImageView icon){
         this.icon = icon;
-    }}
+    }
+}
+
+class Tower {
+    int X = 0;
+    int Y = 0;
+    int range = 400;
+    ImageView icon;
+    public Tower (ImageView icon){ this.icon = icon;  }
+}
+
+//class Projectile {
+  //  int[] coordinate = {};
+    //ImageView icon;
+    //public Projectile (ImageView icon) {this.icon = icon; }
+//}
+
